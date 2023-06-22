@@ -26,12 +26,21 @@ public class LeonMovement : MonoBehaviour
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
 
+        if (Horizontal < 0.0f)
+        {
+            transform.localScale = new Vector3(-0.15f,0.15f,1f);
+        }
+        else if (Horizontal > 0.0f)
+        {
+            transform.localScale = new Vector3(0.15f,0.15f,1f);            
+        }
         Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
 
         if (Physics2D.Raycast(transform.position, Vector3.down, 0.3f))
         {
             Grounded = true;
-        }else
+        }
+        else
         {
             Grounded = false;
         }
