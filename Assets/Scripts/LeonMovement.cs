@@ -25,11 +25,14 @@ public class LeonMovement : MonoBehaviour
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
+
         Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
-        if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
+
+        if (Physics2D.Raycast(transform.position, Vector3.down, 0.3f))
         {
             Grounded = true;
-        }else{
+        }else
+        {
             Grounded = false;
         }
 
@@ -44,6 +47,6 @@ public class LeonMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        Rigidbody2D.velocity = new Vector2(Horizontal, Rigidbody2D.velocity.y);
+        Rigidbody2D.velocity = new Vector2(Horizontal * speed, Rigidbody2D.velocity.y);
     }
 }
